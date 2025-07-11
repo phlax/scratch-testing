@@ -1,0 +1,15 @@
+FROM scratch AS binary
+COPY ci/docker-entrypoint.sh /
+ADD envoy.yaml /etc/envoy/envoy.yaml
+
+
+FROM gcr.io/distroless/base-nossl-debian12:nonroot@sha256:d1fc914c43cea489c26c896721344a49a1761b9bb678bcba1758772d22913302 AS binary
+COPY --from=bullseye --chown=0:0 --chmod=755 \
+    /etc/envoy /etc/envoy
+
+
+FROM debian:bullseye-slim
+COPY --from=envoy-distroless  \
+    / /distroless-root
+CMD ls -alh /distroless-root/etc/envoy \
+    && cat /distroless-root/etc/envoy/envoy.txt
