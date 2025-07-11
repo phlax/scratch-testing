@@ -14,4 +14,5 @@ COPY --from=bullseye --chown=0:0 --chmod=755 \
 FROM debian:bullseye-slim
 COPY --from=envoy-distroless  \
     / /distroless-root
-CMD ls -alh /etc/envoy
+CMD ls -alh /distroless-root/etc/envoy \
+    && cat /etc/envoy/envoy.txt
