@@ -1,6 +1,7 @@
 FROM debian:bullseye-slim AS bullseye
 RUN mkdir /etc/envoy \
-    && echo BOOM > /etc/envoy/envoy.txt
+    && echo BOOM > /etc/envoy/envoy.txt \
+    && ls -alh /etc/envoy
 
 
 FROM gcr.io/distroless/base-nossl-debian12:nonroot@sha256:d1fc914c43cea489c26c896721344a49a1761b9bb678bcba1758772d22913302 AS envoy-distroless
