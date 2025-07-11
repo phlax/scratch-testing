@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as bullseye
+FROM debian:bullseye-slim AS bullseye
 RUN mkdir /etc/envoy \
     && echo BOOM > /etc/envoy/envoy.txt
 
