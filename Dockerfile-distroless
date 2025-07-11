@@ -15,4 +15,4 @@ FROM debian:bullseye-slim
 COPY --from=envoy-distroless  \
     / /distroless-root
 CMD ls -alh /distroless-root/etc/envoy \
-    && cat /etc/envoy/envoy.txt
+    && cat /distroless-root/etc/envoy/envoy.txt
