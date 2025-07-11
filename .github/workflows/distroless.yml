@@ -10,9 +10,8 @@ jobs:
   test_distroless:
     runs-on: ubuntu-24.04
     steps:
-      uses: envoyproxy/toolshed/gh-actions/github/checkout@actions-v0.3.22
-
-      run: |
+    - uses: envoyproxy/toolshed/gh-actions/github/checkout@actions-v0.3.22
+    - run: |
         docker build -f Dockerfile-distroless -t distroless-test .
 
         docker run --rm -it distroless-test
