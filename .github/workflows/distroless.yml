@@ -15,5 +15,13 @@ jobs:
     steps:
     - uses: envoyproxy/toolshed/gh-actions/github/checkout@actions-v0.3.22
     - run: |
+        DOCKER_PLATFORM="${DOCKER_PLATFORM:-linux/arm64,linux/amd64}"
+        # Install QEMU emulators
+        docker run --rm --privileged tonistiigi/binfmt:qemu-v7.0.0 --install all
+
+        # Remove older build instance
+        docker buildx rm multi-builder 2> /dev/null || :
+        docker buildx create --use --name multi-builder --platform "${DOCKER_PLATFORM}"
+
         docker build -f Dockerfile-distroless -t distroless-test .
         docker run --rm distroless-test
