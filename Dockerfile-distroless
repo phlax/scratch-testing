@@ -1,5 +1,4 @@
 FROM scratch AS binary
-COPY ci/docker-entrypoint.sh /
 ADD envoy.yaml /etc/envoy/envoy.yaml
 
 
