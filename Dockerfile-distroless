@@ -4,7 +4,7 @@ ADD envoy.yaml /etc/envoy/envoy.yaml
 
 
 FROM gcr.io/distroless/base-nossl-debian12:nonroot@sha256:d1fc914c43cea489c26c896721344a49a1761b9bb678bcba1758772d22913302 AS distroless
-COPY --from=bullseye --chown=0:0 --chmod=755 \
+COPY --from=binary --chown=0:0 --chmod=755 \
     /etc/envoy /etc/envoy
 
 
